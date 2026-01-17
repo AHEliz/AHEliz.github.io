@@ -3,50 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <title>Guías | ARMY Perú</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-color: #f5f0ff;
-            color: #2c2c2c;
-            margin: 40px;
-        }
-        h1 {
-            color: #6a0dad;
-        }
-        .guia {
-            background: #ffffff;
-            border-left: 6px solid #6a0dad;
-            padding: 15px;
-            margin-bottom: 20px;
-        }
-        .tipo {
-            font-size: 14px;
-            color: #555;
-        }
-        a {
-            color: #6a0dad;
-            font-weight: bold;
-            text-decoration: none;
-        }
-    </style>
+ <style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f5f0ff;
+        margin: 40px;
+        color: #2c2c2c;
+    }
+
+    h1 {
+        color: #6a0dad;
+        margin-bottom: 10px;
+    }
+
+    .contenedor {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        margin-top: 30px;
+    }
+
+    .card {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 25px;
+        text-decoration: none;
+        color: inherit;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+
+    .card h2 {
+        color: #6a0dad;
+        margin-top: 0;
+    }
+
+    .card p {
+        margin-bottom: 0;
+    }
+
+    .volver {
+        display: inline-block;
+        margin-top: 40px;
+        font-weight: bold;
+        color: #6a0dad;
+        text-decoration: none;
+    }
+</style>
+
 </head>
 <body>
 
-    <h1>Guías</h1>
+<h1>📘 Guías</h1>
 <p>Selecciona el tipo de guía que necesitas 💜</p>
 
-<div class="guia">
-    <h2> Streaming</h2>
-    <p>Guías para Spotify, Apple Music, YouTube y más.</p>
-    <a href="streaming/index.html">Ver guías de streaming →</a>
+<div class="contenedor">
+
+    <a href="streaming/index.html" class="card">
+        <h2>🎧 Streaming</h2>
+        <p>Guías para Spotify, Apple Music, YouTube y más.</p>
+    </a>
+
+    <a href="votaciones/index.html" class="card">
+        <h2>🗳️ Votaciones</h2>
+        <p>Guías para votar correctamente en apps y premios.</p>
+    </a>
+
 </div>
 
-<div class="guia">
-    <h2> Votaciones</h2>
-    <p>Guías para votar correctamente en apps y premios.</p>
-    <a href="votaciones/index.html">Ver guías de votación →</a>
-</div>
+<a href="../index.html" class="volver">⬅️ Volver al inicio</a>
 
-<p>
-    <a href="../index.html">⬅️ Volver al inicio</a>
 </p>
