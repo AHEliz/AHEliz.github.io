@@ -8,34 +8,74 @@
         font-family: Arial, sans-serif;
         background-color: #f5f0ff;
         margin: 40px;
+        color: #2c2c2c;
     }
-    h1 { color: #6a0dad; }
-    .guia {
-        background: #fff;
-        border-left: 6px solid #6a0dad;
-        padding: 15px;
-        margin-bottom: 20px;
+
+    h1 {
+        color: #6a0dad;
     }
-    a { color: #6a0dad; font-weight: bold; text-decoration: none; }
+
+    .contenedor {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        margin-top: 30px;
+    }
+
+    .card {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+
+    .card h2 {
+        color: #6a0dad;
+        margin-top: 0;
+    }
+
+    .volver {
+        display: inline-block;
+        margin-top: 40px;
+        font-weight: bold;
+        color: #6a0dad;
+        text-decoration: none;
+    }
 </style>
+
 </head>
 <body>
 
 <h1> Guías de Votaciones</h1>
+<p>Guías para votar correctamente 💜</p>
 
-<div class="guia">
-    <h2>Mnet</h2>
-    <p>Cómo votar de manera correcta.</p>
+<div class="contenedor">
+
+    <div class="card">
+        <h2>Mnet</h2>
+        <p>Cómo votar paso a paso.</p>
+    </div>
+
+    <div class="card">
+        <h2>MAMA</h2>
+        <p>Guía para votaciones oficiales.</p>
+    </div>
+
+    <div class="card">
+        <h2>Otras plataformas</h2>
+        <p>Votaciones especiales y temporales.</p>
+    </div>
+
 </div>
 
-<div class="guia">
-    <h2>MAMA</h2>
-    <p>Cómo votar de manera correcta.</p>
-</div>
+<a href="../index.html" class="volver">⬅️ Volver a Guías</a>
 
-
-<p>
-    <a href="../index.html">⬅️ Volver a Guías</a>
 </p>
 
 </body>
