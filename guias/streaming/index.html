@@ -8,38 +8,74 @@
         font-family: Arial, sans-serif;
         background-color: #f5f0ff;
         margin: 40px;
+        color: #2c2c2c;
     }
-    h1 { color: #6a0dad; }
-    .guia {
-        background: #fff;
-        border-left: 6px solid #6a0dad;
-        padding: 15px;
-        margin-bottom: 20px;
+
+    h1 {
+        color: #6a0dad;
     }
-    a { color: #6a0dad; font-weight: bold; text-decoration: none; }
+
+    .contenedor {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 25px;
+        margin-top: 30px;
+    }
+
+    .card {
+        background: #ffffff;
+        border-radius: 12px;
+        padding: 25px;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(0,0,0,0.12);
+    }
+
+    .card h2 {
+        color: #6a0dad;
+        margin-top: 0;
+    }
+
+    .volver {
+        display: inline-block;
+        margin-top: 40px;
+        font-weight: bold;
+        color: #6a0dad;
+        text-decoration: none;
+    }
 </style>
+
 </head>
 <body>
 
-<h1> Guías de Streaming</h1>
+<h1>🎧 Guías de Streaming</h1>
+<p>Selecciona la plataforma 💜</p>
 
-<div class="guia">
-    <h2>Spotify</h2>
-    <p>Cómo hacer streaming correcto y evitar errores.</p>
+<div class="contenedor">
+
+    <div class="card">
+        <h2>Spotify</h2>
+        <p>Guía para hacer streaming correcto.</p>
+    </div>
+
+    <div class="card">
+        <h2>Apple Music</h2>
+        <p>Recomendaciones para que los streams cuenten.</p>
+    </div>
+
+    <div class="card">
+        <h2>YouTube</h2>
+        <p>Recomendaciones para views y reproducciones.</p>
+    </div>
+
 </div>
 
-<div class="guia">
-    <h2>Apple Music</h2>
-    <p>Recomendaciones para que los streams cuenten.</p>
-</div>
+<a href="../index.html" class="volver">⬅️ Volver a Guías</a>
 
-<div class="guia">
-    <h2>YouTube</h2>
-    <p>Recomendaciones para views y reproducciones.</p>
-</div>
-
-<p>
-    <a href="../index.html">⬅️ Volver a Guías</a>
 </p>
 
 </body>
