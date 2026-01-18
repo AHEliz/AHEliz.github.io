@@ -80,6 +80,19 @@ max-width: 700px;
   border-radius: 10px;
 }
 
+.slider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.slider img {
+  width: 80%;
+  max-width: 800px;
+  border-radius: 12px;
+}
+
         
     </style>
 </head>
@@ -114,6 +127,13 @@ max-width: 700px;
   <img id="modal-img">
 </div>
 
+
+    <div class="slider">
+  <button onclick="anterior()">◀</button>
+  <img id="slider-img" src="img/atencion.png">
+  <button onclick="siguiente()">▶</button>
+</div>
+
 </section>
 
 
@@ -142,5 +162,26 @@ max-width: 700px;
     modal.style.display = "none";
   }
 </script>
+
+<script>
+  const imagenes = [
+    "img/atencion.png",
+    "img/recuerda.png",
+  ];
+
+  let indice = 0;
+  const sliderImg = document.getElementById("slider-img");
+
+  function siguiente() {
+    indice = (indice + 1) % imagenes.length;
+    sliderImg.src = imagenes[indice];
+  }
+
+  function anterior() {
+    indice = (indice - 1 + imagenes.length) % imagenes.length;
+    sliderImg.src = imagenes[indice];
+  }
+</script>
+
 
 </html>
