@@ -97,6 +97,36 @@
             grid-template-columns: 1fr;
           }
         }
+
+        .estado {
+          position: absolute;
+          top: 10px;
+          left: 10px;
+          background: #4caf50;
+          color: white;
+          padding: 5px 10px;
+          font-size: 12px;
+          border-radius: 20px;
+          font-weight: bold;
+        }
+        
+        .por-vencer .estado {
+          background: #ff9800;
+        }
+        
+        .vencido .estado {
+          background: #d32f2f;
+        }
+        
+        .vencido img {
+          filter: grayscale(100%);
+          opacity: 0.6;
+        }
+        
+        .vencido {
+          cursor: not-allowed;
+        }
+
         </style>
 </head>
 <body>
@@ -111,32 +141,35 @@
 
   <!-- BLOQUE 1 -->
   <div class="card"
-     data-inicio="2026-01-10"
-     data-fin="2026-01-31"
+     data-inicio="2026-01-16"
+     data-fin="2026-01-25"
      onclick="abrirModal(
        'FANCAST 2025',
-       '31.01.2026',
-       'https://link-votacion.com',
+       '25.01.2026',
+       'https://t.co/wIvLksMmLa',
        'https://link-guia.com',
-       'Votación para los MAMA Awards 2026.'
+       'Votación para Fancast 2025 - Segunda ronda.'
      )">
-  <img src="img/mama2026.png">
-  <div class="card-text">MAMA (31.01.2026)</div>
+  <img src="img/fancast.png">
+  <div class="card-text">FANCAST (25.01.2026)</div>
   <div class="estado"></div>
 </div>
 
 
   <!-- BLOQUE 2 -->
   <div class="card"
+    data-inicio="2026-01-16"
+     data-fin="2026-01-25"
        onclick="abrirModal(
-         'Mubeat',
-         '15.02.2026',
-         'https://link-votacion.com',
+         'Mubeat 2025',
+         '25.01.2026',
+         'https://t.co/rSqZBBCwhY',
          'https://link-guia.com',
-         'Votación para Mubeat.'
+         '[Round 2] GLOBAL POPULAR ARTIST.'
        )">
     <img src="img/mubeat.png">
-    <div class="card-text">MUBEAT (15.02.2026)</div>
+    <div class="card-text">MUBEAT (25.01.2026)</div>
+      <div class="estado"></div>
   </div>
 
 </div>
@@ -167,6 +200,33 @@
     document.getElementById('modal').style.display = 'none';
   }
 </script>
+
+    <script>
+  const hoy = new Date();
+  const cards = document.querySelectorAll('.card');
+
+  cards.forEach(card => {
+    const inicio = new Date(card.dataset.inicio);
+    const fin = new Date(card.dataset.fin);
+
+    const diff = Math.ceil((fin - hoy) / (1000 * 60 * 60 * 24));
+    const estado = card.querySelector('.estado');
+
+    if (hoy > fin) {
+      card.classList.add('vencido');
+      estado.innerText = 'VENCIDO';
+      card.onclick = null;
+    } else if (diff <= 3) {
+      card.classList.add('por-vencer');
+      estado.innerText = 'POR VENCER';
+    } else if (hoy >= inicio) {
+      estado.innerText = 'ACTIVO';
+    } else {
+      estado.innerText = 'PRÓXIMAMENTE';
+    }
+  });
+</script>
+
 
 </body>
 </html>
