@@ -171,6 +171,14 @@
         Revisa siempre la fecha límite 💜
     </p>
 
+<!-- GRID DE FILTROS -->
+<div class="filtros">
+  <button onclick="filtrar('todas', this)" class="activo">Todas</button>
+  <button onclick="filtrar('activas', this)">Activas</button>
+  <button onclick="filtrar('por-vencer', this)">Por vencer</button>
+  <button onclick="filtrar('vencido', this)">Vencidas</button>
+</div>
+    
 <!-- GRID DE VOTACIONES -->
 <div class="grid">
   <div class="card activas">...</div>
@@ -179,8 +187,6 @@
 </div>
 
     
-    <div class="grid">
-
   <!-- BLOQUE 1 -->
   <div class="card"
      data-inicio="2026-01-16"
@@ -213,13 +219,6 @@
     <div class="card-text">MUBEAT (25.01.2026)</div>
       <div class="estado"></div>
   </div>
-
-    <div class="filtros">
-  <button onclick="filtrar('todas', this)" class="activo">Todas</button>
-  <button onclick="filtrar('activas', this)">Activas</button>
-  <button onclick="filtrar('por-vencer', this)">Por vencer</button>
-  <button onclick="filtrar('vencido', this)">Vencidas</button>
-</div>
 
 
 </div>
