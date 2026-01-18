@@ -90,7 +90,7 @@ max-width: 700px;
   <h2> Precauciones importantes</h2>
 
   <div class="banner">
-    <img src="img/atencion.png" alt="Advertencia sobre estafas BTS">
+    <img src="img/atencion.png" class="img-ampliable">
     <p>
       Últimamente han circulado publicaciones falsas y posibles estafas
       relacionadas a conciertos y eventos de BTS en Perú.
@@ -99,7 +99,7 @@ max-width: 700px;
   </div>
 
     <div class="banner">
-    <img src="img/recuerda.png" alt="Advertencia sobre estafas BTS">
+    <img src="img/recuerda.png" class="img-ampliable">
     <p>
       Recuerda estar atento a las nuevas actualizaciones y leer los requisitos establecidos
     </p>
@@ -125,18 +125,21 @@ max-width: 700px;
 
 </body>
 <script>
-  const imagen = document.querySelector('.banner img');
+  const imagenes = document.querySelectorAll('.img-ampliable');
   const modal = document.getElementById('modal');
   const modalImg = document.getElementById('modal-img');
 
-  imagen.onclick = () => {
-    modal.style.display = "flex";
-    modalImg.src = imagen.src;
-  }
+  imagenes.forEach(img => {
+    img.addEventListener('click', () => {
+      modal.style.display = "flex";
+      modalImg.src = img.src;
+    });
+  });
 
   function cerrarModal() {
     modal.style.display = "none";
   }
 </script>
+
 
 </html>
