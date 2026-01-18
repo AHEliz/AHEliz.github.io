@@ -146,6 +146,21 @@
   background: #d1c4e9;
 }
 
+.filtros button {
+  padding: 8px 16px;
+  border-radius: 20px;
+  border: none;
+  background: #e5e5e5;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.filtros button.activo {
+  background: #7c3aed; /* morado army 💜 */
+  color: white;
+  box-shadow: 0 4px 10px rgba(124,58,237,0.4);
+}
+
         </style>
 </head>
 <body>
@@ -159,14 +174,14 @@
     <!-- FILTROS -->
 <div class="filtros">
   <button onclick="filtrar('todas')">Todas</button>
-  <button onclick="filtrar('activa')">Activas</button>
+  <button onclick="filtrar('activas')">Activas</button>
   <button onclick="filtrar('por-vencer')">Por vencer</button>
   <button onclick="filtrar('vencido')">Vencidas</button>
 </div>
 
 <!-- GRID DE VOTACIONES -->
 <div class="grid">
-  <div class="card activa">...</div>
+  <div class="card activas">...</div>
   <div class="card por-vencer">...</div>
   <div class="card vencido">...</div>
 </div>
@@ -206,6 +221,14 @@
     <div class="card-text">MUBEAT (25.01.2026)</div>
       <div class="estado"></div>
   </div>
+
+    <div class="filtros">
+  <button onclick="filtrar('todas', this)" class="activo">Todas</button>
+  <button onclick="filtrar('activas', this)">Activas</button>
+  <button onclick="filtrar('por-vencer', this)">Por vencer</button>
+  <button onclick="filtrar('vencido', this)">Vencidas</button>
+</div>
+
 
 </div>
 
@@ -255,7 +278,7 @@
       card.classList.add('por-vencer');
       estado.innerText = 'POR VENCER';
     } else if (hoy >= inicio) {
-      card.classList.add('activa');
+      card.classList.add('activas');
   estado.innerText = 'ACTIVO';
     } else {
       estado.innerText = 'PRÓXIMAMENTE';
@@ -275,6 +298,27 @@
       }
     });
   }
+
+    function filtrar(estado, boton) {
+  const cards = document.querySelectorAll('.card');
+  const botones = document.querySelectorAll('.filtros button');
+
+  // quitar resaltado
+  botones.forEach(b => b.classList.remove('activo'));
+  boton.classList.add('activo');
+
+  // filtrar tarjetas
+  cards.forEach(card => {
+    if (estado === 'todas') {
+      card.style.display = 'block';
+    } else {
+      card.style.display = card.classList.contains(estado)
+        ? 'block'
+        : 'none';
+    }
+  });
+}
+
 </script>
 
 
