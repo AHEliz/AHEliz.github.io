@@ -2,39 +2,55 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<title>Guías de Votaciones | ARMY Perú</title>
+<title>Guías de Votaciones | ARMYPe</title>
 <style>
     body {
-        font-family: Arial, sans-serif;
-        background-color: #f5f0ff;
-        margin: 40px;
-        color: #2c2c2c;
-    }
+         font-family: Arial, sans-serif;
+           background: #f7f7fb;
+          padding: 30px;
+        }
 
     h1 {
         color: #6a0dad;
     }
 
-    .contenedor {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-        gap: 25px;
-        margin-top: 30px;
-    }
+  /* GRID 4 COLUMNAS */
+     .grid {
+         display: grid;
+         grid-template-columns: repeat(4, 1fr);
+         gap: 20px;
+        }
 
     .card {
-        background: #ffffff;
-        border-radius: 12px;
-        padding: 25px;
-        box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+          position: relative;
+          cursor: pointer;
+          border-radius: 12px;
+          overflow: hidden;
+          box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+          transition: transform 0.2s;
     }
 
     .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 8px 20px rgba(0,0,0,0.12);
-    }
+        transform: scale(1.03);
+        }
+    
+    .card img {
+          width: 100%;
+          height: 220px;
+          object-fit: cover;
+        }
 
+    .card-text {
+          position: absolute;
+          bottom: 0;
+          width: 100%;
+          background: rgba(0,0,0,0.65);
+          color: white;
+          padding: 10px;
+          text-align: center;
+          font-weight: bold;
+        }
+    
     .card h2 {
         color: #6a0dad;
         margin-top: 0;
@@ -55,12 +71,12 @@
 <h1> Guías de Votaciones</h1>
 <p>Guías para votar correctamente 💜</p>
 
-<div class="contenedor">
+<div class="grip">
 
-    <div class="card">
-        <h2>Mnet</h2>
-        <p>Cómo votar paso a paso.</p>
-    </div>
+    <div class="guia-card" onclick="abrirGuia('mubeat')">
+  <img src="img/mubeat/portada.png" alt="Mubeat">
+  <h3>Mubeat</h3>
+</div>
 
     <div class="card">
         <h2>MAMA</h2>
@@ -74,6 +90,61 @@
 
 </div>
 
+</div> 
+const guias = {
+  mubeat: {
+    titulo: "Guía de votación Mubeat",
+    texto: "Sigue estos pasos para votar correctamente.",
+    imagenes: [
+      "img/mubeat/paso1.png",
+      "img/mubeat/paso2.png",
+      "img/mubeat/paso3.png"
+    ]
+  },
+  mama: {
+    titulo: "Guía de votación MAMA",
+    texto: "Guía paso a paso para votar en MAMA.",
+    imagenes: [
+      "img/mama/paso1.png",
+      "img/mama/paso2.png"
+    ]
+  }
+};
+
+<div id="modalGuia" class="modal">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="cerrarGuia()">×</span>
+
+    <h2 id="guiaTitulo"></h2>
+    <p id="guiaTexto"></p>
+
+    <div class="slider">
+      <button onclick="anterior()">‹</button>
+      <img id="guiaImagen">
+      <button onclick="siguiente()">›</button>
+    </div>
+  </div>
+</div>
+
+</div>
+let indice = 0;
+let imagenesActuales = [];
+
+function abrirGuia(tipo) {
+  const guia = guias[tipo];
+
+  document.getElementById("guiaTitulo").innerText = guia.titulo;
+  document.getElementById("guiaTexto").innerText = guia.texto;
+
+  imagenesActuales = guia.imagenes;
+  indice = 0;
+  document.getElementById("guiaImagen").src = imagenesActuales[indice];
+
+  document.getElementById("modalGuia").style.display = "flex";
+}
+</div>
+
+    
 <a href="../index.html" class="volver">⬅️ Volver a Guías</a>
 
 </p>
