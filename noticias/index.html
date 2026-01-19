@@ -15,6 +15,58 @@ h1 {
   color: #6a0dad;
 }
 
+  /* BANNER */
+.banner {
+  background-image: url("img/banner.png");
+  background-size: cover;
+  background-position: center;
+  height: 260px;
+  border-radius: 14px;
+  margin-bottom: 30px;
+  display: flex;
+  align-items: center;
+  padding: 25px;
+  color: white;
+}
+
+.banner h1 {
+  margin: 0;
+  font-size: 36px;
+}
+
+.banner p {
+  font-size: 16px;
+  max-width: 500px;
+}
+
+
+  /* DESTACADA */
+.destacada {
+  display: flex;
+  gap: 20px;
+  background: #fff;
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.2);
+  margin-bottom: 40px;
+  cursor: pointer;
+}
+
+.destacada img {
+  width: 45%;
+  object-fit: cover;
+}
+
+.destacada-content {
+  padding: 20px;
+}
+
+.destacada h2 {
+  margin-top: 10px;
+  color: #6a0dad;
+}
+
+  
 /* GRID */
 .grid {
   display: grid;
@@ -109,8 +161,28 @@ h1 {
 
 <body>
 
-<h1>Noticias Importantes</h1>
-<p>Información verificada para ARMY Perú 💜</p>
+<div class="banner">
+  <div>
+    <h1>Noticias Importantes</h1>
+    <p>Información verificada y alertas importantes para ARMY Perú 💜</p>
+  </div>
+</div>
+
+<div class="destacada" onclick="abrirNoticia(
+  'Alerta: información falsa sobre concierto',
+  'No existe anuncio oficial en torno a precios, estadio, paquetes y horarios de preventa que se realizará en Pre.venta. Toda
+  información tiene que venir de cuentas oficiales',
+  'img/noticia0.png'
+)">
+  <img src="img/noticia0.png" alt="Noticia destacada">
+  <div class="destacada-content">
+    <span class="tag alerta">Alerta</span>
+    <h2>Alerta: información falsa sobre concierto</h2>
+    <p>Se están difundiendo publicaciones engañosas. Verifica siempre fuentes oficiales.</p>
+    <div class="fecha">19/01/2026</div>
+  </div>
+</div>
+
 
 <div class="grid">
 
