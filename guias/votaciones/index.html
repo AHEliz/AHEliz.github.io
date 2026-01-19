@@ -15,8 +15,7 @@
     }
 
   /* GRID 4 COLUMNAS */
-     .grid {
-         display: grid;
+     <div class="grid">
          grid-template-columns: repeat(4, 1fr);
          gap: 20px;
         }
@@ -101,10 +100,10 @@
 <h1> Guías de Votaciones</h1>
 <p>Guías para votar correctamente 💜</p>
 
-<div class="grip">
+<div class="grid">
 
-    <div class="guia-card" onclick="abrirGuia('mubeat')">
-  <img src="img/mubeat/portada.png" alt="Mubeat">
+    <div class="card" onclick="abrirGuia('mubeat')">
+  <img src="guias/votaciones/img/mubeat/portada.png" alt="Mubeat">
   <h3>Mubeat</h3>
 </div>
 
@@ -120,15 +119,13 @@
     <p id="guiaTexto"></p>
 
     <div class="slider">
-      <button onclick="anterior()">◀</button>
-      <img id="guiaImagen" src="" alt="Paso de la guía">
-      <div class="controles">
-  <button onclick="pasoAnterior()">‹</button>
-  <button onclick="siguientePaso()">›</button>
-</div>
-
+      <button onclick="pasoAnterior()">‹</button>
+      <img id="guiaImagen" alt="Paso de la guía">
+      <button onclick="siguientePaso()">›</button>
+    </div>
   </div>
 </div>
+
 
 <script>
 const pasosMubeat = [
@@ -138,9 +135,24 @@ const pasosMubeat = [
 ];
 
 let pasoActual = 0;
+const modal = document.getElementById("modalGuia");
 const img = document.getElementById("guiaImagen");
+const titulo = document.getElementById("guiaTitulo");
+const texto = document.getElementById("guiaTexto");
 
-img.src = pasosMubeat[pasoActual];
+function abrirGuia(tipo) {
+  if (tipo === "mubeat") {
+    pasoActual = 0;
+    titulo.textContent = "Guía de votación Mubeat";
+    texto.textContent = "Sigue estos pasos para votar correctamente.";
+    img.src = pasosMubeat[pasoActual];
+    modal.style.display = "flex";
+  }
+}
+
+function cerrarGuia() {
+  modal.style.display = "none";
+}
 
 function siguientePaso() {
   if (pasoActual < pasosMubeat.length - 1) {
@@ -156,6 +168,7 @@ function pasoAnterior() {
   }
 }
 </script>
+
 
 </body>
 
