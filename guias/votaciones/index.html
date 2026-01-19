@@ -141,6 +141,12 @@ h1 {
     <div class="card-text">Mubeat</div>
   </div>
 
+  <div class="card" id="mubeat" onclick="openGuia('mubeat')">
+    <img src="img/mubeat/portada.png">
+    <h3>Mubeat</h3>
+  </div>
+
+  
 </div>
 
 <!-- MODAL -->
@@ -205,6 +211,16 @@ function pasoAnterior() {
 }
 </script>
 
+<script>
+  window.addEventListener("load", () => {
+    const hash = window.location.hash.replace("#", "");
+    if (hash) {
+      openGuia(hash);
+    }
+  });
+</script>
+
+  
 <a href="../index.html" class="volver">⬅️ Volver a Guías</a>
 
 </p>
