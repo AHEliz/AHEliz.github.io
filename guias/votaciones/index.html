@@ -77,6 +77,7 @@
   <img src="img/mubeat/portada.png" alt="Mubeat">
   <h3>Mubeat</h3>
 </div>
+    
 
     <div class="card">
         <h2>MAMA</h2>
@@ -91,6 +92,23 @@
 </div>
 
 </div> 
+
+<div id="modalGuia" class="modal">
+  <div class="modal-contenido">
+    <span class="cerrar" onclick="cerrarGuia()">×</span>
+
+    <h2 id="guiaTitulo"></h2>
+    <p id="guiaTexto"></p>
+
+    <div class="slider">
+      <button onclick="anterior()">‹</button>
+      <img id="guiaImagen">
+      <button onclick="siguiente()">›</button>
+    </div>
+  </div>
+</div>
+
+<script>
 const guias = {
   mubeat: {
     titulo: "Guía de votación Mubeat",
@@ -111,27 +129,17 @@ const guias = {
   }
 };
 
-<div id="modalGuia" class="modal">
-  <div class="modal-contenido">
-    <span class="cerrar" onclick="cerrarGuia()">×</span>
-
-    <h2 id="guiaTitulo"></h2>
-    <p id="guiaTexto"></p>
-
-    <div class="slider">
-      <button onclick="anterior()">‹</button>
-      <img id="guiaImagen">
-      <button onclick="siguiente()">›</button>
-    </div>
-  </div>
-</div>
-
-</div>
 let indice = 0;
 let imagenesActuales = [];
 
 function abrirGuia(tipo) {
+  console.log("Abriendo guía:", tipo); // 👈 DEBUG
+
   const guia = guias[tipo];
+  if (!guia) {
+    alert("No se encontró la guía: " + tipo);
+    return;
+  }
 
   document.getElementById("guiaTitulo").innerText = guia.titulo;
   document.getElementById("guiaTexto").innerText = guia.texto;
@@ -142,6 +150,27 @@ function abrirGuia(tipo) {
 
   document.getElementById("modalGuia").style.display = "flex";
 }
+
+function siguiente() {
+  if (indice < imagenesActuales.length - 1) {
+    indice++;
+    document.getElementById("guiaImagen").src = imagenesActuales[indice];
+  }
+}
+
+function anterior() {
+  if (indice > 0) {
+    indice--;
+    document.getElementById("guiaImagen").src = imagenesActuales[indice];
+  }
+}
+
+function cerrarGuia() {
+  document.getElementById("modalGuia").style.display = "none";
+}
+</script>
+</body>
+
 </div>
 
     
