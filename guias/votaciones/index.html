@@ -73,17 +73,27 @@
   border-radius: 12px;
 }
 
-.slider {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+    .slider {
+      display: flex;
+      align-items: center;
+      gap: 10px;
 }
 
-.slider img {
-  max-width: 100%;
-  border-radius: 8px;
+    .slider img {
+        max-width: 100%;
+        border-radius: 8px;
 }
 
+    .estado {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        background: #4caf50;
+        color: white;
+        padding: 5px 10px;
+        font-size: 12px;
+        border-radius: 20px;
+        font-weight: bold;
     
     .volver {
         display: inline-block;
@@ -101,10 +111,24 @@
 <p>Guías para votar correctamente 💜</p>
 
 <div class="grid">
+  <!-- BLOQUE 1 -->
+  <div class="card"
+     onclick="abrirModal(
+       'Cómo recolectar Heart Beats',
+       'En esta guía, te ayudaremos a recolectar "Heart Beats" que servirán
+        como para votar en las categorías necesarias'
+     )">
+  <img src="img/mubeat/portada.png">
+  <div class="card-text">MUBEAT</div>
+  <div class="estado"></div>
+</div>
+    
+<div class="grid">
 
     <div class="card" onclick="abrirGuia()">
-  <img src="guias/votaciones/img/mubeat/portada.png" alt="Mubeat">
-  <h3>Mubeat</h3>
+   <img src="img/mubeat/paso1.png">
+  <div class="card-text">MUBEAT</div>
+  <div class="estado"></div>
 </div>
 
 </div>
