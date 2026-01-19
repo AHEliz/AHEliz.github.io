@@ -102,7 +102,7 @@
 
 <div class="grid">
 
-    <div class="card" onclick="abrirGuia('mubeat')">
+    <div class="card" onclick="abrirGuia()">
   <img src="guias/votaciones/img/mubeat/portada.png" alt="Mubeat">
   <h3>Mubeat</h3>
 </div>
@@ -129,29 +129,22 @@
 
 <script>
 const pasosMubeat = [
-  "guias/votaciones/img/mubeat/paso1.png",
-  "guias/votaciones/img/mubeat/paso2.png",
-  "guias/votaciones/img/mubeat/paso3.png"
+  "img/mubeat/paso1.png",
+  "img/mubeat/paso2.png",
+  "img/mubeat/paso3.png"
 ];
 
 let pasoActual = 0;
-const modal = document.getElementById("modalGuia");
 const img = document.getElementById("guiaImagen");
-const titulo = document.getElementById("guiaTitulo");
-const texto = document.getElementById("guiaTexto");
 
-function abrirGuia(tipo) {
-  if (tipo === "mubeat") {
-    pasoActual = 0;
-    titulo.textContent = "Guía de votación Mubeat";
-    texto.textContent = "Sigue estos pasos para votar correctamente.";
-    img.src = pasosMubeat[pasoActual];
-    modal.style.display = "flex";
-  }
+function abrirGuia() {
+  pasoActual = 0;
+  img.src = pasosMubeat[pasoActual];
+  document.getElementById("modalGuia").style.display = "flex";
 }
 
 function cerrarGuia() {
-  modal.style.display = "none";
+  document.getElementById("modalGuia").style.display = "none";
 }
 
 function siguientePaso() {
@@ -168,6 +161,7 @@ function pasoAnterior() {
   }
 }
 </script>
+
 
 
 </body>
