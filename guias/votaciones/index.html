@@ -107,17 +107,6 @@
   <img src="img/mubeat/portada.png" alt="Mubeat">
   <h3>Mubeat</h3>
 </div>
-    
-
-    <div class="card">
-        <h2>MAMA</h2>
-        <p>Guía para votaciones oficiales.</p>
-    </div>
-
-    <div class="card">
-        <h2>Otras plataformas</h2>
-        <p>Votaciones especiales y temporales.</p>
-    </div>
 
 </div>
 
@@ -133,74 +122,41 @@
     <div class="slider">
       <button onclick="anterior()">◀</button>
       <img id="guiaImagen" src="" alt="Paso de la guía">
-      <button onclick="siguiente()">▶</button>
-    </div>
+      <div class="controles">
+  <button onclick="pasoAnterior()">‹</button>
+  <button onclick="siguientePaso()">›</button>
+</div>
+
   </div>
 </div>
 
-
 <script>
-const guias = {
-  mubeat: {
-    titulo: "Guía de votación Mubeat",
-    texto: "Sigue estos pasos para votar correctamente.",
-    imagenes: [
-      "votaciones/img/mubeat/paso1.png",
-      "votaciones/img/mubeat/paso2.png",
-      "votaciones/img/mubeat/paso3.png"
-    ]
-  },
-  mama: {
-    titulo: "Guía de votación MAMA",
-    texto: "Guía paso a paso para votar en MAMA.",
-    imagenes: [
-      "img/mama/paso1.png",
-      "img/mama/paso2.png",
-    "img/mama/paso3.png"
-    ]
-  }
-};
+const pasosMubeat = [
+  "guias/votaciones/img/mubeat/paso1.png",
+  "guias/votaciones/img/mubeat/paso2.png",
+  "guias/votaciones/img/mubeat/paso3.png"
+];
 
-let indice = 0;
-let imagenesActuales = [];
+let pasoActual = 0;
+const img = document.getElementById("guiaImagen");
 
-function abrirGuia(tipo) {
-  console.log("Abriendo guía:", tipo); // 👈 DEBUG
+img.src = pasosMubeat[pasoActual];
 
-  const guia = guias[tipo];
-  if (!guia) {
-    alert("No se encontró la guía: " + tipo);
-    return;
-  }
-
-  document.getElementById("guiaTitulo").innerText = guia.titulo;
-  document.getElementById("guiaTexto").innerText = guia.texto;
-
-  imagenesActuales = guia.imagenes;
-  indice = 0;
-  document.getElementById("guiaImagen").src = imagenesActuales[indice];
-
-  document.getElementById("modalGuia").style.display = "flex";
-}
-
-function siguiente() {
-  if (indice < imagenesActuales.length - 1) {
-    indice++;
-    document.getElementById("guiaImagen").src = imagenesActuales[indice];
+function siguientePaso() {
+  if (pasoActual < pasosMubeat.length - 1) {
+    pasoActual++;
+    img.src = pasosMubeat[pasoActual];
   }
 }
 
-function anterior() {
-  if (indice > 0) {
-    indice--;
-    document.getElementById("guiaImagen").src = imagenesActuales[indice];
+function pasoAnterior() {
+  if (pasoActual > 0) {
+    pasoActual--;
+    img.src = pasosMubeat[pasoActual];
   }
-}
-
-function cerrarGuia() {
-  document.getElementById("modalGuia").style.display = "none";
 }
 </script>
+
 </body>
 
 </div>
