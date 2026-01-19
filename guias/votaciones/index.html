@@ -136,9 +136,9 @@ h1 {
 <!-- BLOQUES -->
 <div class="grid">
 
-  <div class="card" id="mubeat" onclick="abrirGuia('mubeat')">
-    <img src="img/mubeat/portada.png">
-    <div class="card-text">Mubeat</div>
+   <div class="card" onclick="abrirGuia()">
+      <img src="img/mubeat/portada.png" alt="Mubeat">
+      <div class="card-text">Mubeat</div>
   </div>
 
   
@@ -204,15 +204,6 @@ function pasoAnterior() {
     img.src = pasos[pasoActual];
   }
 }
-</script>
-
-<script>
-  window.addEventListener("load", () => {
-    const hash = window.location.hash.replace("#", "");
-    if (hash) {
-      openGuia(hash);
-    }
-  });
 </script>
 
   
