@@ -55,7 +55,37 @@
         color: #6a0dad;
         margin-top: 0;
     }
+      /* MODAL */
+    .modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
 
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  max-width: 600px;
+  width: 90%;
+  border-radius: 12px;
+}
+
+.slider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.slider img {
+  max-width: 100%;
+  border-radius: 8px;
+}
+
+    
     .volver {
         display: inline-block;
         margin-top: 40px;
@@ -94,19 +124,20 @@
 </div> 
 
 <div id="modalGuia" class="modal">
-  <div class="modal-contenido">
+  <div class="modal-content">
     <span class="cerrar" onclick="cerrarGuia()">×</span>
 
     <h2 id="guiaTitulo"></h2>
     <p id="guiaTexto"></p>
 
     <div class="slider">
-      <button onclick="anterior()">‹</button>
-      <img id="guiaImagen">
-      <button onclick="siguiente()">›</button>
+      <button onclick="anterior()">◀</button>
+      <img id="guiaImagen" src="" alt="Paso de la guía">
+      <button onclick="siguiente()">▶</button>
     </div>
   </div>
 </div>
+
 
 <script>
 const guias = {
