@@ -15,7 +15,8 @@
     }
 
   /* GRID 4 COLUMNAS */
-     <div class="grid">
+     .grid {
+         display: grid;
          grid-template-columns: repeat(4, 1fr);
          gap: 20px;
         }
@@ -73,27 +74,17 @@
   border-radius: 12px;
 }
 
-    .slider {
-      display: flex;
-      align-items: center;
-      gap: 10px;
+.slider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
-    .slider img {
-        max-width: 100%;
-        border-radius: 8px;
+.slider img {
+  max-width: 100%;
+  border-radius: 8px;
 }
 
-    .estado {
-        position: absolute;
-        top: 10px;
-        left: 10px;
-        background: #4caf50;
-        color: white;
-        padding: 5px 10px;
-        font-size: 12px;
-        border-radius: 20px;
-        font-weight: bold;
     
     .volver {
         display: inline-block;
@@ -110,26 +101,23 @@
 <h1> Guías de Votaciones</h1>
 <p>Guías para votar correctamente 💜</p>
 
-<div class="grid">
-  <!-- BLOQUE 1 -->
-  <div class="card"
-     onclick="abrirModal(
-       'Cómo recolectar Heart Beats',
-       'En esta guía, te ayudaremos a recolectar "Heart Beats" que servirán
-        como para votar en las categorías necesarias'
-     )">
-  <img src="img/mubeat/portada.png">
-  <div class="card-text">MUBEAT</div>
-  <div class="estado"></div>
+<div class="grip">
+
+    <div class="guia-card" onclick="abrirGuia('mubeat')">
+  <img src="img/mubeat/portada.png" alt="Mubeat">
+  <h3>Mubeat</h3>
 </div>
     
-<div class="grid">
 
-    <div class="card" onclick="abrirGuia()">
-   <img src="img/mubeat/paso1.png">
-  <div class="card-text">MUBEAT</div>
-  <div class="estado"></div>
-</div>
+    <div class="card">
+        <h2>MAMA</h2>
+        <p>Guía para votaciones oficiales.</p>
+    </div>
+
+    <div class="card">
+        <h2>Otras plataformas</h2>
+        <p>Votaciones especiales y temporales.</p>
+    </div>
 
 </div>
 
@@ -143,51 +131,76 @@
     <p id="guiaTexto"></p>
 
     <div class="slider">
-      <button onclick="pasoAnterior()">‹</button>
-      <img id="guiaImagen" alt="Paso de la guía">
-      <button onclick="siguientePaso()">›</button>
+      <button onclick="anterior()">◀</button>
+      <img id="guiaImagen" src="" alt="Paso de la guía">
+      <button onclick="siguiente()">▶</button>
     </div>
   </div>
 </div>
 
 
 <script>
-const pasosMubeat = [
-  "img/mubeat/paso1.png",
-  "img/mubeat/paso2.png",
-  "img/mubeat/paso3.png"
-];
+const guias = {
+  mubeat: {
+    titulo: "Guía de votación Mubeat",
+    texto: "Sigue estos pasos para votar correctamente.",
+    imagenes: [
+      "votaciones/img/mubeat/paso1.png",
+      "votaciones/img/mubeat/paso2.png",
+      "votaciones/img/mubeat/paso3.png"
+    ]
+  },
+  mama: {
+    titulo: "Guía de votación MAMA",
+    texto: "Guía paso a paso para votar en MAMA.",
+    imagenes: [
+      "img/mama/paso1.png",
+      "img/mama/paso2.png",
+    "img/mama/paso3.png"
+    ]
+  }
+};
 
-let pasoActual = 0;
-const img = document.getElementById("guiaImagen");
+let indice = 0;
+let imagenesActuales = [];
 
-function abrirGuia() {
-  pasoActual = 0;
-  img.src = pasosMubeat[pasoActual];
+function abrirGuia(tipo) {
+  console.log("Abriendo guía:", tipo); // 👈 DEBUG
+
+  const guia = guias[tipo];
+  if (!guia) {
+    alert("No se encontró la guía: " + tipo);
+    return;
+  }
+
+  document.getElementById("guiaTitulo").innerText = guia.titulo;
+  document.getElementById("guiaTexto").innerText = guia.texto;
+
+  imagenesActuales = guia.imagenes;
+  indice = 0;
+  document.getElementById("guiaImagen").src = imagenesActuales[indice];
+
   document.getElementById("modalGuia").style.display = "flex";
+}
+
+function siguiente() {
+  if (indice < imagenesActuales.length - 1) {
+    indice++;
+    document.getElementById("guiaImagen").src = imagenesActuales[indice];
+  }
+}
+
+function anterior() {
+  if (indice > 0) {
+    indice--;
+    document.getElementById("guiaImagen").src = imagenesActuales[indice];
+  }
 }
 
 function cerrarGuia() {
   document.getElementById("modalGuia").style.display = "none";
 }
-
-function siguientePaso() {
-  if (pasoActual < pasosMubeat.length - 1) {
-    pasoActual++;
-    img.src = pasosMubeat[pasoActual];
-  }
-}
-
-function pasoAnterior() {
-  if (pasoActual > 0) {
-    pasoActual--;
-    img.src = pasosMubeat[pasoActual];
-  }
-}
 </script>
-
-
-
 </body>
 
 </div>
