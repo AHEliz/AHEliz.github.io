@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Noticias Importantes | ARMY Perú</title>
+
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f7f7fb;
+  padding: 30px;
+}
+
+h1 {
+  color: #6a0dad;
+}
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* CARD */
+.card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.card:hover {
+  transform: scale(1.03);
+}
+
+.card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.card-content {
+  padding: 15px;
+}
+
+.card h3 {
+  margin: 0 0 8px;
+}
+
+.fecha {
+  font-size: 13px;
+  color: #666;
+}
+
+/* ETIQUETAS */
+.tag {
+  display: inline-block;
+  padding: 4px 8px;
+  font-size: 12px;
+  border-radius: 6px;
+  margin-bottom: 6px;
+}
+
+.confirmado { background: #d4edda; color: #155724; }
+.alerta { background: #fff3cd; color: #856404; }
+.desmentido { background: #f8d7da; color: #721c24; }
+
+/* MODAL */
+.modal {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background: #fff;
+  padding: 20px;
+  max-width: 650px;
+  width: 90%;
+  border-radius: 12px;
+  position: relative;
+}
+
+.cerrar {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 22px;
+  cursor: pointer;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 500px) {
+  .grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+
+<body>
+
+<h1>Noticias Importantes</h1>
+<p>Información verificada para ARMY Perú 💜</p>
+
+<div class="grid">
+
+  <!-- NOTICIA 1 -->
+  <div class="card" onclick="abrirNoticia(
+    'BTS no ha anunciado tour en Perú',
+    'Circula información falsa sobre un supuesto concierto. Hasta el momento, HYBE no ha confirmado ninguna fecha para Perú.',
+    'img/noticia1.png'
+  )">
+    <img src="img/noticia1.png">
+    <div class="card-content">
+      <span class="tag desmentido">Desmentido</span>
+      <h3>BTS no ha anunciado tour en Perú</h3>
+      <div class="fecha">15/01/2026</div>
+    </div>
+  </div>
+
+  <!-- NOTICIA 2 -->
+  <div class="card" onclick="abrirNoticia(
+    'Cuidado con reventa falsa',
+    'Se detectaron cuentas ofreciendo entradas falsas para eventos relacionados a BTS.',
+    'img/noticia2.png'
+  )">
+    <img src="img/noticia2.png">
+    <div class="card-content">
+      <span class="tag alerta">Alerta</span>
+      <h3>Cuidado con reventa falsa</h3>
+      <div class="fecha">10/01/2026</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- MODAL -->
+<div id="modal" class="modal" onclick="cerrarFuera(event)">
+  <div class="modal-content">
+    <span class="cerrar" onclick="cerrarModal()">×</span>
+    <h2 id="modalTitulo"></h2>
+    <img id="modalImg" style="width:100%; border-radius:10px; margin:10px 0;">
+    <p id="modalTexto"></p>
+  </div>
+</div>
+
+<script>
+function abrirNoticia(titulo, texto, imagen) {
+  document.getElementById("modalTitulo").innerText = titulo;
+  document.getElementById("modalTexto").innerText = texto;
+  document.getElementById("modalImg").src = imagen;
+  document.getElementById("modal").style.display = "flex";
+}
+
+function cerrarModal() {
+  document.getElementById("modal").style.display = "none";
+}
+
+function cerrarFuera(e) {
+  if (e.target.id === "modal") {
+    cerrarModal();
+  }
+}
+</script>
+
+</body>
+</html>
