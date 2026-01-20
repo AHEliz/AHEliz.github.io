@@ -1,1 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<title>Calendario de Votaciones | ARMYPE</title>
 
+<style>
+body {
+  font-family: Arial, sans-serif;
+  background: #f6f6fb;
+  padding: 30px;
+}
+
+/* CONTENEDOR GENERAL */
+.calendario-layout {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 30px;
+}
+
+/* ---------- CALENDARIO ---------- */
+
+.calendario {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.calendario h2 {
+  margin-bottom: 15px;
+  color: #6a0dad;
+}
+
+/* grid 7 columnas */
+.grid-calendario {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+}
+
+.dia,
+.fecha {
+  padding: 12px;
+  text-align: center;
+  border-radius: 8px;
+}
+
+.dia {
+  font-weight: bold;
+  background: #ece9f7;
+}
+
+/* celdas normales */
+.fecha {
+  background: #f3f3f9;
+  cursor: default;
+}
+
+/* fechas con evento */
+.fecha.evento {
+  background: #6a0dad;
+  color: white;
+  cursor: pointer;
+  position: relative;
+}
+
+/* tooltip */
+.fecha.evento .tooltip {
+  display: none;
+  position: absolute;
+  bottom: 110%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #222;
+  color: white;
+  padding: 8px 10px;
+  font-size: 0.8rem;
+  border-radius: 6px;
+  width: 160px;
+  z-index: 10;
+}
+
+.fecha.evento:hover .tooltip {
+  display: block;
+}
+
+/* ---------- URGENCIAS ---------- */
+
+.urgencias {
+  background: white;
+  padding: 20px;
+  border-radius: 12px;
+}
+
+.urgencias h3 {
+  color: #c2185b;
+  margin-bottom: 15px;
+}
+
+.urgencia-card {
+  background: #fbe9f2;
+  padding: 12px;
+  border-radius: 10px;
+  margin-bottom: 12px;
+}
+
+.urgencia-card a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+}
+
+.urgencia-card span {
+  display: block;
+  font-size: 0.85rem;
+  color: #555;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .calendario-layout {
+    grid-template-columns: 1fr;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<h1>📅 Calendario de Votaciones</h1>
+<p>Fechas clave para ARMY PE</p>
+
+<div class="calendario-layout">
+
+  <!-- CALENDARIO -->
+  <section class="calendario">
+    <h2>Enero 2026</h2>
+
+    <div class="grid-calendario">
+      <!-- DÍAS -->
+      <div class="dia">L</div>
+      <div class="dia">M</div>
+      <div class="dia">M</div>
+      <div class="dia">J</div>
+      <div class="dia">V</div>
+      <div class="dia">S</div>
+      <div class="dia">D</div>
+
+      <!-- FECHAS -->
+      <div class="fecha">18</div>
+      <div class="fecha">19</div>
+
+      <!-- FECHA CON EVENTO -->
+      <a href="../voting/mubeat.html" class="fecha evento">
+        20
+        <div class="tooltip">
+          <strong>Mubeat</strong><br>
+          ⏰ Por vencer<br>
+          Último día de votación
+        </div>
+      </a>
+
+      <a href="../voting/fancast.html" class="fecha evento">
+        22
+        <div class="tooltip">
+          <strong>Fancast</strong><br>
+          ⏰ Por vencer<br>
+          Votación activa
+        </div>
+      </a>
+
+      <a href="../voting/mubeat.html" class="fecha evento">
+        25
+        <div class="tooltip">
+          <strong>Mubeat</strong><br>
+          🏆 Premiación<br>
+          Último día
+        </div>
+      </a>
+
+      <div class="fecha">26</div>
+      <div class="fecha">27</div>
+    </div>
+  </section>
+
+  <!-- URGENCIAS -->
+  <aside class="urgencias">
+    <h3>🚨 Más urgentes</h3>
+
+    <div class="urgencia-card">
+      <a href="../voting/mubeat.html">Mubeat</a>
+      <span>Vence: 20 Sep</span>
+    </div>
+
+    <div class="urgencia-card">
+      <a href="../voting/mnet.html">Mnet</a>
+      <span>Vence: 22 Sep</span>
+    </div>
+
+    <div class="urgencia-card">
+      <a href="../voting/fancast.html">MAMA</a>
+      <span>Vence: 25 Sep</span>
+    </div>
+  </aside>
+
+</div>
+
+</body>
+</html>
