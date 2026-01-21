@@ -127,102 +127,28 @@ body {
 
 <body>
 
-<h1>📅 Calendario de Votaciones</h1>
-<p>Fechas clave para ARMY PE</p>
+  <!-- TÍTULO DE LA SECCIÓN -->
+  <h1>Calendario de votaciones</h1>
+  <p>Fechas importantes y vencimientos 💜</p>
 
-<div class="calendario-layout">
+  <!-- ESTRUCTURA DEL CALENDARIO -->
+  <div class="calendario-container">
 
-  <!-- CALENDARIO -->
-  <section class="calendario">
-    <h2>Enero 2026</h2>
+    <!-- CALENDARIO -->
+    <div class="calendario" id="calendario"></div>
 
-    <div class="grid-calendario">
-      <!-- DÍAS -->
-      <div class="dia">L</div>
-      <div class="dia">M</div>
-      <div class="dia">M</div>
-      <div class="dia">J</div>
-      <div class="dia">V</div>
-      <div class="dia">S</div>
-      <div class="dia">D</div>
-
-      <!-- FECHAS -->
-      <div class="fecha">29</div>
-      <div class="fecha">30</div>
-      <div class="fecha">31</div>
-      <div class="fecha">01</div>
-      <div class="fecha">02</div>
-      <div class="fecha">03</div>
-      <div class="fecha">04</div>
-      <div class="fecha">05</div>
-      <div class="fecha">06</div>
-      <div class="fecha">07</div>
-      <div class="fecha">08</div>
-      <div class="fecha">09</div>
-      <div class="fecha">10</div>
-      <div class="fecha">11</div>
-      <div class="fecha">12</div>
-      <div class="fecha">13</div>
-      <div class="fecha">14</div>
-      <div class="fecha">15</div>
-      <div class="fecha">16</div>
-      <div class="fecha">17</div>
-      <div class="fecha">18</div>
-      <div class="fecha">19</div>
-      <div class="fecha">20</div>
-      <div class="fecha">21</div>
-      <div class="fecha">22</div>
-      <div class="fecha">23</div>
-      <div class="fecha">24</div>
-
-      <!-- FECHA CON EVENTO -->
-      <a href="../voting/index.html" class="fecha evento">
-        25
-        <div class="tooltip">
-
-          <div class="evento-item">
-          <strong>Fancast</strong><br>
-          ⏰ Por vencer<br>
-          Votación activa
-        </div>
-          
-          <div class="evento-item">
-          <strong>Mubeat</strong><br>
-          🏆 Por vencer<br>
-          Votación activa
-        </div>
-          
-    </div>
-   </a>
-
-      <!-- FINAL FECHA CON EVENTO -->
-
-      <div class="fecha">26</div>
-      <div class="fecha">27</div>
-      <div class="fecha">28</div>
-      <div class="fecha">29</div>
-      <div class="fecha">30</div>
-      <div class="fecha">31</div>
-      
-    </div>
-  </section>
-
-  <!-- CUADRO URGENCIAS -->
-  <aside class="urgencias">
-    <h3>🚨 Más urgentes</h3>
-
-    <div class="urgencia-card">
-      <a href="../voting/index.html">Mubeat</a>
-      <span>Vence: 25 Sep</span>
+    <!-- BLOQUE DE URGENTES -->
+    <div class="urgentes">
+      <h3>⚠️ Próximos a vencer</h3>
+      <div id="lista-urgentes"></div>
     </div>
 
-    <div class="urgencia-card">
-      <a href="../voting/index.html">MAMA</a>
-      <span>Vence: 25 Sep</span>
-    </div>
-  </aside>
+  </div>
 
-</div>
+  <!-- SCRIPTS (SIEMPRE AL FINAL DEL BODY) -->
+  <script src="../data/votaciones.js"></script>
+  <script src="calendario.js"></script>
 
 </body>
+
 </html>
