@@ -179,38 +179,7 @@
   <button onclick="filtrar('vencido', this)">Vencidas</button>
 </div>
 
-    <div class="grid">
-  <!-- BLOQUE 1 -->
-  <div class="card"
-     data-inicio="2026-01-16"
-     data-fin="2026-01-25"
-     onclick="abrirModal(
-       '33rd Anniversary HANTEO MUSIC AWARDS 2025',
-       '25.01.2026',
-       'https://t.co/wIvLksMmLa',
-       'Votación Fancast [2nda Ronda]'
-     )">
-  <img src="img/fancast.png">
-  <div class="card-text">FANCAST (25.01.2026)</div>
-  <div class="estado"></div>
-</div>
-
-
-  <!-- BLOQUE 2 -->
-  <div class="card"
-    data-inicio="2026-01-16"
-     data-fin="2026-01-25"
-       onclick="abrirModal(
-         'Mubeat 2025',
-         '25.01.2026',
-         'https://t.co/rSqZBBCwhY',
-         'https://aheliz.github.io/guias/votaciones/index.html',
-         '[Round 2] GLOBAL POPULAR ARTIST.'
-       )">
-    <img src="img/mubeat.png">
-    <div class="card-text">MUBEAT (25.01.2026)</div>
-      <div class="estado"></div>
-  </div>
+    <div class="grid" id="lista-votaciones"></div>
 
 
 </div>
@@ -291,6 +260,37 @@
   });
 }
 
+</script>
+
+
+<script src="../data/votaciones.js"></script>
+
+<script>
+const contenedor = document.getElementById("lista-votaciones");
+
+votaciones.forEach(v => {
+  const card = document.createElement("div");
+  card.className = "card";
+  card.dataset.inicio = v.inicio;
+  card.dataset.fin = v.fin;
+
+  card.innerHTML = `
+    <img src="${v.imagen}">
+    <div class="card-text">${v.plataforma} (${v.fechaTexto})</div>
+    <div class="estado"></div>
+  `;
+
+  card.onclick = () => {
+    abrirModal(
+      v.titulo,
+      v.fechaTexto,
+      v.linkVotacion,
+      v.descripcion
+    );
+  };
+
+  contenedor.appendChild(card);
+});
 </script>
 
 
