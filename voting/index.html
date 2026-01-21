@@ -197,6 +197,35 @@
 </div>
 
 <script>
+function aplicarEstados() {
+  const hoy = new Date();
+  const cards = document.querySelectorAll('.card');
+
+  cards.forEach(card => {
+    const inicio = new Date(card.dataset.inicio);
+    const fin = new Date(card.dataset.fin);
+    const diff = Math.ceil((fin - hoy) / (1000 * 60 * 60 * 24));
+    const estado = card.querySelector('.estado');
+
+    if (hoy > fin) {
+      card.classList.add('vencido');
+      estado.innerText = 'VENCIDO';
+      card.onclick = null;
+    } else if (diff <= 3) {
+      card.classList.add('por-vencer');
+      estado.innerText = 'POR VENCER';
+    } else if (hoy >= inicio) {
+      card.classList.add('activas');
+      estado.innerText = 'ACTIVO';
+    } else {
+      estado.innerText = 'PRÓXIMAMENTE';
+    }
+  });
+}
+</script>
+
+
+<script>
   function abrirModal(titulo, fecha, votar, guia, desc) {
     document.getElementById('modal-titulo').innerText = titulo;
     document.getElementById('modal-fecha').innerText = fecha;
@@ -211,32 +240,6 @@
   }
 </script>
 
-    <script>
-  const hoy = new Date();
-  const cards = document.querySelectorAll('.card');
-
-  cards.forEach(card => {
-    const inicio = new Date(card.dataset.inicio);
-    const fin = new Date(card.dataset.fin);
-
-    const diff = Math.ceil((fin - hoy) / (1000 * 60 * 60 * 24));
-    const estado = card.querySelector('.estado');
-
-    if (hoy > fin) {
-      card.classList.add('vencido');
-      estado.innerText = 'VENCIDO';
-      card.onclick = null;
-    } else if (diff <= 3) {
-      card.classList.add('por-vencer');
-      estado.innerText = 'POR VENCER';
-    } else if (hoy >= inicio) {
-      card.classList.add('activas');
-  estado.innerText = 'ACTIVO';
-    } else {
-      estado.innerText = 'PRÓXIMAMENTE';
-    }
-  });
-</script>
 
 <script>
     
@@ -281,16 +284,21 @@ votaciones.forEach(v => {
   `;
 
   card.onclick = () => {
-    abrirModal(
-      v.titulo,
-      v.fechaTexto,
-      v.linkVotacion,
-      v.descripcion
-    );
-  };
+  abrirModal(
+    v.titulo,
+    v.fechaTexto,
+    v.linkVotacion,
+    v.linkGuia,
+    v.descripcion
+  );
+};
+
 
   contenedor.appendChild(card);
 });
+
+aplicarEstados();
+    
 </script>
 
 
