@@ -199,6 +199,38 @@ for (let dia = 1; dia <= diasMes; dia++) {
 }
 </script>
 
+<script>
+const listaUrgentes = document.getElementById("lista-urgentes");
+
+const hoyFecha = new Date();
+
+// filtrar votaciones que vencen en ≤ 3 días
+const urgentes = votaciones
+  .map(v => {
+    const fin = new Date(v.fin);
+    const diff = Math.ceil((fin - hoyFecha) / (1000*60*60*24));
+    return { ...v, diff };
+  })
+  .filter(v => v.diff >= 0 && v.diff <= 3)
+  .sort((a, b) => a.diff - b.diff)
+  .slice(0, 3); // máximo 3 bloques
+
+urgentes.forEach(v => {
+  const card = document.createElement("div");
+  card.className = "urgencia-card";
+
+  card.innerHTML = `
+    <a href="../voting/index.html">
+      ${v.plataforma}
+      <span>Vence en ${v.diff} día${v.diff !== 1 ? "s" : ""}</span>
+      <span>${v.descripcion}</span>
+    </a>
+  `;
+
+  listaUrgentes.appendChild(card);
+});
+</script>
+
 
   
 </body>
