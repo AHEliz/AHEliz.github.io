@@ -151,20 +151,17 @@ body {
   <script src="../data/votaciones.js"></script>
   <script src="calendario.js"></script>
 
-<script>
-  <script src="../data/votaciones.js"></script>
+<script src="../data/votaciones.js"></script>
 
 <script>
 const calendario = document.getElementById("calendario");
 const hoy = new Date();
 
-// 📅 Mes actual
 const año = hoy.getFullYear();
 const mes = hoy.getMonth();
 
-// Primer día del mes
+// Primer día del mes (0 = domingo)
 const primerDia = new Date(año, mes, 1).getDay();
-// Días del mes
 const diasMes = new Date(año, mes + 1, 0).getDate();
 
 // Espacios vacíos antes del día 1
@@ -172,20 +169,20 @@ for (let i = 0; i < primerDia; i++) {
   calendario.innerHTML += `<div></div>`;
 }
 
-// Crear cada día
+// Crear días
 for (let dia = 1; dia <= diasMes; dia++) {
   const fechaActual = new Date(año, mes, dia);
   const fechaISO = fechaActual.toISOString().split("T")[0];
 
-  // buscar votaciones que vencen ese día
   const eventos = votaciones.filter(v => v.fin === fechaISO);
 
-  let htmlEventos = "";
+  let tooltipHTML = "";
+
   eventos.forEach(e => {
     const diff = Math.ceil((new Date(e.fin) - hoy) / (1000*60*60*24));
     const estado = diff <= 3 ? "⏰ Por vencer" : "🟢 Activa";
 
-    htmlEventos += `
+    tooltipHTML += `
       <strong>${e.plataforma}</strong><br>
       ${estado}<br>
       ${e.descripcion}<br><br>
@@ -193,13 +190,15 @@ for (let dia = 1; dia <= diasMes; dia++) {
   });
 
   calendario.innerHTML += `
-    <a href="../voting/index.html" class="dia ${eventos.length ? "evento" : ""}">
-      <div class="dia-numero">${dia}</div>
-      ${eventos.length ? `<div class="tooltip">${htmlEventos}</div>` : ""}
+    <a href="../voting/index.html"
+       class="fecha ${eventos.length ? "evento" : ""}">
+      ${dia}
+      ${eventos.length ? `<div class="tooltip">${tooltipHTML}</div>` : ""}
     </a>
   `;
 }
 </script>
+
 
   
 </body>
