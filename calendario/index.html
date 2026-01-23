@@ -151,40 +151,38 @@ body {
 
 <body>
 
-  <!-- TÍTULO DE LA SECCIÓN -->
-  <h1>Calendario de votaciones</h1>
-  <p>Fechas importantes y vencimientos 💜</p>
+  <!-- TÍTULO DE LA SECCION -->
+<h1>Calendario de votaciones</h1>
+<p>Fechas importantes y vencimientos 💜</p>
 
-  <!-- CALENDARIO -->
-    <div class="calendario">
-      <h2>Enero 2026</h2>
-      <div class="grid-calendario" id="calendario"></div>
+<!-- LAYOUT GENERAL -->
+<div class="calendario-layout">
+
+  <!-- BLOQUE CALENDARIO -->
+  <div class="calendario">
+
+    <div class="calendario-header">
+      <button id="prevMes">◀</button>
+      <h2 id="titulo-mes"></h2>
+      <button id="nextMes">▶</button>
     </div>
-  
-  <div class="calendario-header">
-    <button id="prevMes">◀</button>
-    <h2 id="titulo-mes"></h2>
-    <button id="nextMes">▶</button>
+
+    <div class="grid-calendario" id="calendario"></div>
   </div>
 
-  <div class="grid-calendario" id="calendario"></div>
-
-  <!-- ESTRUCTURA DEL CALENDARIO -->
-  <div class="calendario-layout">
+  <!-- BLOQUE URGENCIAS -->
+  <div class="urgencias">
+    <h3>⚠️ Próximos a vencer</h3>
+    <div id="lista-urgentes"></div>
   </div>
 
-    <!-- BLOQUE DE URGENTES -->
-    <div class="urgencias">
-      <h3>⚠️ Próximos a vencer</h3>
-      <div id="lista-urgentes"></div>
-    </div>
-  
+</div>
+
 
   <!-- SCRIPTS (SIEMPRE AL FINAL DEL BODY) -->
   <script src="../data/votaciones.js"></script>
   <script src="calendario.js"></script>
-
-<script src="../data/votaciones.js"></script>
+  
 
 <script>
 const calendario = document.getElementById("calendario");
