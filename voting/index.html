@@ -127,6 +127,18 @@
           cursor: not-allowed;
         }
 
+        .ultimo-dia .estado {
+          background: #c62828;
+          animation: pulso 1.5s infinite;
+        }
+
+        @keyframes pulso {
+          0% { transform: scale(1); }
+          50% { transform: scale(1.1); }
+          100% { transform: scale(1); }
+        }
+
+
         .filtros {
   text-align: center;
   margin-bottom: 25px;
@@ -208,18 +220,26 @@ function aplicarEstados() {
     const estado = card.querySelector('.estado');
 
     if (hoy > fin) {
-      card.classList.add('vencido');
-      estado.innerText = 'VENCIDO';
-      card.onclick = null;
-    } else if (diff <= 3) {
-      card.classList.add('por-vencer');
-      estado.innerText = 'POR VENCER';
-    } else if (hoy >= inicio) {
-      card.classList.add('activas');
-      estado.innerText = 'ACTIVO';
-    } else {
-      estado.innerText = 'PRÓXIMAMENTE';
-    }
+  card.classList.add('vencido');
+  estado.innerText = 'VENCIDO';
+  card.onclick = null;
+
+} else if (diff === 0) {
+  card.classList.add('ultimo-dia');
+  estado.innerText = '🚨 ÚLTIMO DÍA';
+
+} else if (diff <= 3) {
+  card.classList.add('por-vencer');
+  estado.innerText = 'POR VENCER';
+
+} else if (hoy >= inicio) {
+  card.classList.add('activas');
+  estado.innerText = 'ACTIVO';
+
+} else {
+  estado.innerText = 'PRÓXIMAMENTE';
+}
+
   });
 }
 </script>
