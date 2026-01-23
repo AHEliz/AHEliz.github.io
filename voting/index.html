@@ -245,6 +245,23 @@
 </div>
 
 <script>
+    
+let filtroActivo = "todas";
+function aplicarBusquedaYFiltros() {
+  const texto = document.getElementById("busqueda").value.toLowerCase();
+  const cards = document.querySelectorAll(".card");
+
+  cards.forEach(card => {
+    const coincideBusqueda = card.innerText.toLowerCase().includes(texto);
+    const coincideFiltro =
+      filtroActivo === "todas" || card.classList.contains(filtroActivo);
+
+    card.style.display =
+      coincideBusqueda && coincideFiltro ? "block" : "none";
+  });
+}
+
+    
 function aplicarEstados() {
   const hoy = new Date();
   const cards = document.querySelectorAll('.card');
@@ -300,23 +317,13 @@ function aplicarEstados() {
 <script>
     
     function filtrar(estado, boton) {
-  const cards = document.querySelectorAll('.card');
-  const botones = document.querySelectorAll('.filtros button');
+  filtroActivo = estado;
 
-  // quitar resaltado
+  const botones = document.querySelectorAll('.filtros button');
   botones.forEach(b => b.classList.remove('activo'));
   boton.classList.add('activo');
 
-  // filtrar tarjetas
-  cards.forEach(card => {
-    if (estado === 'todas') {
-      card.style.display = 'block';
-    } else {
-      card.style.display = card.classList.contains(estado)
-        ? 'block'
-        : 'none';
-    }
-  });
+  aplicarBusquedaYFiltros();
 }
 
 </script>
@@ -358,17 +365,10 @@ aplicarEstados();
 </script>
 
 <script>
-const inputBusqueda = document.getElementById("busqueda");
-
-inputBusqueda.addEventListener("keyup", () => {
-  const texto = inputBusqueda.value.toLowerCase();
-  const cards = document.querySelectorAll(".card");
-
-  cards.forEach(card => {
-    const contenido = card.innerText.toLowerCase();
-    card.style.display = contenido.includes(texto) ? "block" : "none";
-  });
+document.getElementById("busqueda").addEventListener("keyup", () => {
+  aplicarBusquedaYFiltros();
 });
+    
 </script>
 
 
