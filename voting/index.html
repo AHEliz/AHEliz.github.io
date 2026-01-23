@@ -173,6 +173,34 @@
   box-shadow: 0 4px 10px rgba(124,58,237,0.4);
 }
 
+.buscador {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.buscador input {
+  width: 60%;
+  max-width: 420px;
+  padding: 10px 15px;
+  border-radius: 25px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+  outline: none;
+  transition: 0.2s;
+}
+
+.buscador input:focus {
+  border-color: #7c3aed;
+  box-shadow: 0 0 8px rgba(124,58,237,0.3);
+}
+
+@media (max-width: 600px) {
+  .buscador input {
+    width: 90%;
+  }
+}
+
+        
         </style>
 </head>
 <body>
@@ -182,6 +210,14 @@
         Aquí encontrarás votaciones activas y verificadas para apoyar a BTS.
         Revisa siempre la fecha límite 💜
     </p>
+
+<div class="buscador">
+  <input 
+    type="text" 
+    id="busqueda" 
+    placeholder="🔍 Buscar votación por plataforma, ronda o descripción..."
+  >
+</div>
 
 <!-- GRID DE FILTROS -->
 <div class="filtros">
@@ -318,7 +354,21 @@ votaciones.forEach(v => {
 });
 
 aplicarEstados();
-    
+
+</script>
+
+<script>
+const inputBusqueda = document.getElementById("busqueda");
+
+inputBusqueda.addEventListener("keyup", () => {
+  const texto = inputBusqueda.value.toLowerCase();
+  const cards = document.querySelectorAll(".card");
+
+  cards.forEach(card => {
+    const contenido = card.innerText.toLowerCase();
+    card.style.display = contenido.includes(texto) ? "block" : "none";
+  });
+});
 </script>
 
 
