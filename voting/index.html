@@ -262,39 +262,50 @@ function aplicarBusquedaYFiltros() {
 }
 
     
+<script>
 function aplicarEstados() {
-  const hoy = new Date();
+  const hoy = inicioDelDia(new Date());
   const cards = document.querySelectorAll('.card');
 
   cards.forEach(card => {
-    const inicio = new Date(card.dataset.inicio);
-    const fin = new Date(card.dataset.fin);
-    const diff = Math.ceil((fin - hoy) / (1000 * 60 * 60 * 24));
+    const inicio = inicioDelDia(card.dataset.inicio);
+    const fin = inicioDelDia(card.dataset.fin);
     const estado = card.querySelector('.estado');
 
-    if (hoy > fin) {
-  card.classList.add('vencido');
-  estado.innerText = 'VENCIDO';
-  card.onclick = null;
+    // limpiar clases previas
+    card.classList.remove(
+      'vencido',
+      'por-vencer',
+      'ultimo-dia',
+      'activas'
+    );
 
-} else if (diff === 0) {
-  card.classList.add('ultimo-dia');
-  estado.innerText = '🚨 ÚLTIMO DÍA';
+    const diff = Math.floor((fin - hoy) / (1000 * 60 * 60 * 24));
 
-} else if (diff <= 3) {
-  card.classList.add('por-vencer');
-  estado.innerText = 'POR VENCER';
+    if (fin < hoy) {
+      card.classList.add('vencido');
+      estado.innerText = 'VENCIDO';
+      card.onclick = null;
 
-} else if (hoy >= inicio) {
-  card.classList.add('activas');
-  estado.innerText = 'ACTIVO';
+    } else if (diff === 0) {
+      card.classList.add('ultimo-dia');
+      estado.innerText = '🚨 ÚLTIMO DÍA';
 
-} else {
-  estado.innerText = 'PRÓXIMAMENTE';
-}
+    } else if (diff <= 3) {
+      card.classList.add('por-vencer');
+      estado.innerText = 'POR VENCER';
 
+    } else if (hoy >= inicio) {
+      card.classList.add('activas');
+      estado.innerText = 'ACTIVO';
+
+    } else {
+      estado.innerText = 'PRÓXIMAMENTE';
+    }
   });
 }
+</script>
+
 </script>
 
 
@@ -359,6 +370,14 @@ votaciones.forEach(v => {
 
   contenedor.appendChild(card);
 });
+
+<script>
+function inicioDelDia(fecha) {
+  const d = new Date(fecha);
+  d.setHours(0, 0, 0, 0);
+  return d;
+}
+</script>
 
 aplicarEstados();
 
