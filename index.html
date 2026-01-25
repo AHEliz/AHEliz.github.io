@@ -5,6 +5,63 @@
   <title>HOME | ARMY PE</title>
 
   <style>
+    .main-header {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 20px;
+  padding: 15px 30px;
+  background: white;
+  border-radius: 14px;
+  margin-bottom: 30px;
+}
+
+/* IZQUIERDA */
+.logo {
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #6a0dad;
+}
+
+/* CENTRO */
+.header-nav {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+.header-nav a {
+  text-decoration: none;
+  color: #555;
+  font-weight: 500;
+}
+
+.header-nav a.activo {
+  color: #6a0dad;
+  font-weight: bold;
+}
+
+/* DERECHA */
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.busqueda-global {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 0.9rem;
+  width: 140px;
+}
+
+.icono {
+  font-size: 1.1rem;
+  cursor: default;
+  opacity: 0.6;
+}
+
     body {
       margin: 0;
       font-family: Arial, sans-serif;
