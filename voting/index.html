@@ -250,7 +250,10 @@ function aplicarEstados() {
 
   cards.forEach(card => {
     const inicio = inicioDelDia(card.dataset.inicio);
-    const fin = inicioDelDia(card.dataset.fin);
+
+    const fin = new Date(card.dataset.fin);
+    fin.setHours(23, 59, 59, 999);
+
     const estado = card.querySelector('.estado');
 
     card.classList.remove('vencido','por-vencer','ultimo-dia','activas');
@@ -279,6 +282,7 @@ function aplicarEstados() {
     }
   });
 }
+
 </script>
 
     <script>
@@ -310,26 +314,6 @@ function filtrar(estado, boton) {
 }
 </script>
 
-
-<script>
-    
-let filtroActivo = "todas";
-function aplicarBusquedaYFiltros() {
-  const texto = document.getElementById("busqueda").value.toLowerCase();
-  const cards = document.querySelectorAll(".card");
-
-  cards.forEach(card => {
-    const coincideBusqueda = card.innerText.toLowerCase().includes(texto);
-    const coincideFiltro =
-      filtroActivo === "todas" || card.classList.contains(filtroActivo);
-
-    card.style.display =
-      coincideBusqueda && coincideFiltro ? "block" : "none";
-  });
-}
-
-
-</script>
 
 <!-- MODAL -->
 <div id="modal" class="modal" onclick="cerrarModal()">
@@ -391,7 +375,6 @@ votaciones.forEach(v => {
 });
 
 aplicarEstados();
-aplicarBusquedaYFiltros();
 
 document.getElementById("busqueda")
   .addEventListener("keyup", aplicarBusquedaYFiltros);
