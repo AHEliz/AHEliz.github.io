@@ -232,36 +232,17 @@
 
 </div>
 
-<!-- MODAL -->
-<div id="modal" class="modal" onclick="cerrarModal()">
-  <div class="modal-content" onclick="event.stopPropagation()">
-    <h2 id="modal-titulo"></h2>
-    <p><strong> Fecha final:</strong> <span id="modal-fecha"></span></p>
-    <p id="modal-desc"></p>
 
-    <a id="modal-votar" target="_blank">🔗 Ir a votar</a><br>
-    <a id="modal-guia" target="_blank"> Ver guía</a>
-  </div>
-</div>
+
 
 <script>
-    
-let filtroActivo = "todas";
-function aplicarBusquedaYFiltros() {
-  const texto = document.getElementById("busqueda").value.toLowerCase();
-  const cards = document.querySelectorAll(".card");
-
-  cards.forEach(card => {
-    const coincideBusqueda = card.innerText.toLowerCase().includes(texto);
-    const coincideFiltro =
-      filtroActivo === "todas" || card.classList.contains(filtroActivo);
-
-    card.style.display =
-      coincideBusqueda && coincideFiltro ? "block" : "none";
-  });
+function inicioDelDia(fecha) {
+  const d = new Date(fecha);
+  d.setHours(0, 0, 0, 0);
+  return d;
 }
+</script>
 
-    
 <script>
 function aplicarEstados() {
   const hoy = inicioDelDia(new Date());
@@ -272,13 +253,7 @@ function aplicarEstados() {
     const fin = inicioDelDia(card.dataset.fin);
     const estado = card.querySelector('.estado');
 
-    // limpiar clases previas
-    card.classList.remove(
-      'vencido',
-      'por-vencer',
-      'ultimo-dia',
-      'activas'
-    );
+    card.classList.remove('vencido','por-vencer','ultimo-dia','activas');
 
     const diff = Math.floor((fin - hoy) / (1000 * 60 * 60 * 24));
 
@@ -306,9 +281,69 @@ function aplicarEstados() {
 }
 </script>
 
+    <script>
+let filtroActivo = "todas";
+
+function aplicarBusquedaYFiltros() {
+  const texto = document.getElementById("busqueda").value.toLowerCase();
+  const cards = document.querySelectorAll(".card");
+
+  cards.forEach(card => {
+    const coincideBusqueda = card.innerText.toLowerCase().includes(texto);
+    const coincideFiltro =
+      filtroActivo === "todas" || card.classList.contains(filtroActivo);
+
+    card.style.display =
+      coincideBusqueda && coincideFiltro ? "block" : "none";
+  });
+}
+
+function filtrar(estado, boton) {
+  filtroActivo = estado;
+
+  document
+    .querySelectorAll('.filtros button')
+    .forEach(b => b.classList.remove('activo'));
+
+  boton.classList.add('activo');
+  aplicarBusquedaYFiltros();
+}
 </script>
 
 
+<script>
+    
+let filtroActivo = "todas";
+function aplicarBusquedaYFiltros() {
+  const texto = document.getElementById("busqueda").value.toLowerCase();
+  const cards = document.querySelectorAll(".card");
+
+  cards.forEach(card => {
+    const coincideBusqueda = card.innerText.toLowerCase().includes(texto);
+    const coincideFiltro =
+      filtroActivo === "todas" || card.classList.contains(filtroActivo);
+
+    card.style.display =
+      coincideBusqueda && coincideFiltro ? "block" : "none";
+  });
+}
+
+
+</script>
+
+<!-- MODAL -->
+<div id="modal" class="modal" onclick="cerrarModal()">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <h2 id="modal-titulo"></h2>
+    <p><strong> Fecha final:</strong> <span id="modal-fecha"></span></p>
+    <p id="modal-desc"></p>
+
+    <a id="modal-votar" target="_blank">🔗 Ir a votar</a><br>
+    <a id="modal-guia" target="_blank"> Ver guía</a>
+  </div>
+</div>
+
+    
 <script>
   function abrirModal(titulo, fecha, votar, guia, desc) {
     document.getElementById('modal-titulo').innerText = titulo;
@@ -322,21 +357,6 @@ function aplicarEstados() {
   function cerrarModal() {
     document.getElementById('modal').style.display = 'none';
   }
-</script>
-
-
-<script>
-    
-    function filtrar(estado, boton) {
-  filtroActivo = estado;
-
-  const botones = document.querySelectorAll('.filtros button');
-  botones.forEach(b => b.classList.remove('activo'));
-  boton.classList.add('activo');
-
-  aplicarBusquedaYFiltros();
-}
-
 </script>
 
 
@@ -358,36 +378,23 @@ votaciones.forEach(v => {
   `;
 
   card.onclick = () => {
-  abrirModal(
-    v.titulo,
-    v.fechaTexto,
-    v.linkVotacion,
-    v.linkGuia,
-    v.descripcion
-  );
-};
-
+    abrirModal(
+      v.titulo,
+      v.fechaTexto,
+      v.linkVotacion,
+      v.linkGuia,
+      v.descripcion
+    );
+  };
 
   contenedor.appendChild(card);
 });
 
-<script>
-function inicioDelDia(fecha) {
-  const d = new Date(fecha);
-  d.setHours(0, 0, 0, 0);
-  return d;
-}
-</script>
-
 aplicarEstados();
+aplicarBusquedaYFiltros();
 
-</script>
-
-<script>
-document.getElementById("busqueda").addEventListener("keyup", () => {
-  aplicarBusquedaYFiltros();
-});
-    
+document.getElementById("busqueda")
+  .addEventListener("keyup", aplicarBusquedaYFiltros);
 </script>
 
 
