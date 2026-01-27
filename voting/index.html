@@ -234,7 +234,6 @@
 
 
 
-
 <script>
 function inicioDelDia(fecha) {
   const d = new Date(fecha);
@@ -242,6 +241,18 @@ function inicioDelDia(fecha) {
   return d;
 }
 </script>
+    
+<script>
+function fechaLocal(fechaISO) {
+  const partes = fechaISO.split("-");
+  return new Date(
+    Number(partes[0]),
+    Number(partes[1]) - 1,
+    Number(partes[2])
+  );
+}
+</script>
+
 
 <script>
 function aplicarEstados() {
@@ -249,10 +260,11 @@ function aplicarEstados() {
   const cards = document.querySelectorAll('.card');
 
   cards.forEach(card => {
-    const inicio = inicioDelDia(card.dataset.inicio);
+    const inicio = fechaLocal(card.dataset.inicio);
 
-    const fin = new Date(card.dataset.fin);
-    fin.setHours(23, 59, 59, 999);
+    const fin = fechaLocal(card.dataset.fin);
+fin.setHours(23, 59, 59);
+
 
     const estado = card.querySelector('.estado');
 
